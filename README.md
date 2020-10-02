@@ -81,7 +81,7 @@ Run the following commands to find the name of your OpenLibertyApplication and p
 ```bash
 $ oc get olapp
 NAME     IMAGE                                                                                            EXPOSED   RECONCILED   AGE
-appmod   image-registry.openshift-image-registry.svc:5000/zats-test-05-project/app-modernization:v1.0.0   true      True         5d
+appmod   image-registry.openshift-image-registry.svc:5000/<OPENSHIFT_PROJECT>/app-modernization:v1.0.0    true      True         5d
 
 $ oc patch openlibertyapplication appmod -p '{"spec":{"serviceability":{"volumeClaimName":"pvc-ol-day2"}}}' --type=merge
 openlibertyapplication.openliberty.io/appmod patched
@@ -119,7 +119,7 @@ Your dump has been created and should now either be in process or completed. Che
 ```bash
 $ oc get oldump -o wide
 NAME           STARTED   REASON   MESSAGE   COMPLETED   REASON   MESSAGE   DUMP FILE
-ol-dump        True                         True                           /serviceability/zats-test-05-project/appmod-864b8fb98f-ksq9g/2020-10-01_18:33:49.zip
+ol-dump        True                         True                           /serviceability/<OPENSHIFT_PROJECT>/<POD_NAME>/2020-10-01_18:33:49.zip
 ```
 
 When your dump has completed, you can find it by navigating to `<HOSTNAME>`/`<HOST_PATH>` that you specified in Step 3. Here you will find a new sub-directory named `/<OPENSHIFT_PROJECT>/<POD_NAME>` that contains a .zip file of your generated dump. 
