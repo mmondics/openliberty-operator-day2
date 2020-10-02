@@ -149,7 +149,7 @@ Your application is now being traced. View the trace with the following command.
 ```bash
 $ oc get oltrace -o wide
 NAME            PODNAME                   TRACING   REASON   MESSAGE
-ol-trace        appmod-56fbf7b58d-l4mkn   True       
+ol-trace        <POD_NAME>                True       
 ```
 
 In the same path where your dump file is located, you will now find two new log files: `messages.log` and `trace.log`. 
