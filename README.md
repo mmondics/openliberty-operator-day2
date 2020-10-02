@@ -83,7 +83,7 @@ $ oc get olapp
 NAME     IMAGE                                                                                            EXPOSED   RECONCILED   AGE
 appmod   image-registry.openshift-image-registry.svc:5000/zats-test-05-project/app-modernization:v1.0.0   true      True         5d
 
-oc patch openlibertyapplication appmod -p '{"spec":{"serviceability":{"volumeClaimName":"pvc-ol-day2"}}}' --type=merge
+$ oc patch openlibertyapplication appmod -p '{"spec":{"serviceability":{"volumeClaimName":"pvc-ol-day2"}}}' --type=merge
 openlibertyapplication.openliberty.io/appmod patched
 ```
 
@@ -122,7 +122,15 @@ NAME           STARTED   REASON   MESSAGE   COMPLETED   REASON   MESSAGE   DUMP 
 ol-dump        True                         True                           /serviceability/zats-test-05-project/appmod-864b8fb98f-ksq9g/2020-10-01_18:33:49.zip
 ```
 
-When your dump has completed, you can find it by navigating to `<HOSTNAME>`/`<HOST_PATH>` that you specified in Step 3. Here you will find a new sub-directory named `/serviceability/<OPENSHIFT_PROJECT>/<POD_NAME>` that contains a .zip file of your generated dump. 
+When your dump has completed, you can find it by navigating to `<HOSTNAME>`/`<HOST_PATH>` that you specified in Step 3. Here you will find a new sub-directory named `/<OPENSHIFT_PROJECT>/<POD_NAME>` that contains a .zip file of your generated dump. 
+
+```bash
+$ tree
+.
+`-- <OPENSHIFT_PROJECT>
+    `-- <POD_NAME>
+        `-- 2020-10-01_18:33:49.zip
+```
 
 ### 6. Generate a Trace of your Open Liberty Application
 
@@ -146,7 +154,7 @@ ol-trace        appmod-56fbf7b58d-l4mkn   True
 
 In the same path where your dump file is located, you will now find two new log files: `messages.log` and `trace.log`. 
 ```bash
-root # ===> ls -l
+$ ls -l
 total 6376
 -rw-rw---- 1 1000930000 root 6501975 Oct  1 18:34 2020-10-01_18:33:49.zip
 -rw-r----- 1 1000930000 root     723 Oct  1 19:56 messages.log
