@@ -1,0 +1,10 @@
+apiVersion: openliberty.io/v1beta1
+kind: OpenLibertyDump
+metadata:
+  name: ol-dump
+  namespace: <OPENSHIFT_PRJOECT>
+spec:
+  podName: <POD_NAME>
+  include:
+    - thread
+    - heap
