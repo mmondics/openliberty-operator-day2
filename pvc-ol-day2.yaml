@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: pvc-ol-day2
-  namespace: <project containing open liberty application>
+  namespace: <OPENSHIFT_PROJECT>
 spec:
   accessModes:
     - ReadWriteMany
