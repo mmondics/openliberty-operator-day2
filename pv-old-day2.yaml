@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-ol-day2
+  labels:
+    app: ol-day2
+spec:
+  capacity:
+    storage: 2Gi
+  nfs:
+    server: <hostname>
+    path: <hostpath>
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: managed-nfs-storage
+  volumeMode: Filesystem
