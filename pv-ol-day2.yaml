@@ -8,8 +8,8 @@ spec:
   capacity:
     storage: 2Gi
   nfs:
-    server: <hostname>
-    path: <hostpath>
+    server: <HOSTNAME>
+    path: <HOST_PATH>
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
