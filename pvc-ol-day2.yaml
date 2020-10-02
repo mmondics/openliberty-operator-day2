@@ -1,0 +1,22 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-ol-day2
+  namespace: <project containing open liberty application>
+spec:
+  accessModes:
+    - ReadWriteMany
+  selector:
+    matchLabels:
+      app: ol-day2
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: pv-ol-day2
+  storageClassName: managed-nfs-storage
+  volumeMode: Filesystem
+status:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 2Gi
