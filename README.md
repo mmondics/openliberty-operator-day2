@@ -46,18 +46,22 @@ $ oc project <OPENSHIFT_PROJECT>
 
 The Open Liberty Operator's Day-2 operations require [storage for serviceability](https://github.com/OpenLiberty/open-liberty-operator/blob/master/doc/user-guide.adoc#storage-for-serviceability). Included in this repository are example YAML files you can use to quickly create a Persistent Volume (PV) and Persistent Volume Claim (PVC) for your Open Liberty application to store its dumps and traces. 
 
-Edit the `pv-ol-day2.yaml` and `pvc-ol-day2.yaml` files, replacing values for `<HOSTNAME>`, `<HOST_PATH>`, and `<OPENSHIFT_PROJECT>` to reflect your OpenShift and NFS environments. 
+Edit the `pv-ol-day2.yaml` file, replacing values for `<HOSTNAME>` and `<HOST_PATH>` to reflect your OpenShift and NFS environments. 
 
 1. `<HOSTNAME>` should be the server address hosting your NFS storage. 
 2. `<HOST_PATH>` should be the path on your server where you want the dumps and traces to be stored (e.g. `/srv/nfs/openshift/ocpenv1/ol-day2`). 
-3. `<OPENSHIFT_PROJECT>` should be the name of the project where your Open Liberty application is already deployed. 
 
-With the two YAML files edited, run the following commands to create the PV and PVC in your OCP cluster. 
+With the YAML file edited, run the following command to create the PV in your OCP cluster.
 
 ```bash
 $ oc create -f pv-ol-day2.yaml 
 persistentvolume/pv-ol-day2 created
+```
+Edit the `pvc-ol-day2.yaml` file, replacing the value for `<OPENSHIFT_PROJECT>` to reflect your OpenShift environment
 
+1. `<OPENSHIFT_PROJECT>` should be the name of the project where your Open Liberty application is already deployed. 
+
+```bash
 $ oc create -f pvc-ol-day2.yaml 
 persistentvolumeclaim/pvc-ol-day2 created
 ```
@@ -68,6 +72,7 @@ Run the following command to see if your PVC is bound to the PV.
 
 ```bash 
 $ oc get pvc
+
 NAME          STATUS   VOLUME       CAPACITY   ACCESS MODES   STORAGECLASS          AGE
 pvc-ol-day2   Bound    pv-ol-day2   2Gi        RWX            managed-nfs-storage   3m22s
 ```
@@ -89,7 +94,7 @@ openlibertyapplication.openliberty.io/appmod patched
 
 **NOTE**: If you modified your OpenLibertyApplication or PVC names, make sure to reflect the changes in the commands above. 
 
-This change will require your application pod to restart. Check that it's back up and running with the following command.
+This change will require your application pod to regenerate. Check that it's back up and running with the following command.
 
 ```bash
 $ oc get pod
