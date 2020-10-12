@@ -25,7 +25,7 @@ echo "Removing PVC reference from OpenLibertyApplication"
 oc patch openlibertyapplication appmod -p '{"spec":{"serviceability":{"volumeClaimName":null}}}' --type=merge
 
 echo "Deleting PVC"
-oc -n <OPENSHIFT_PROJECT> delete pvc ol-pvc-day2
+oc -n <OPENSHIFT_PROJECT> delete pvc pvc-ol-day2
 
 echo "Deleting PV"
 oc delete pv pv-ol-day2
