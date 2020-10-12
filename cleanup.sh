@@ -21,11 +21,11 @@ oc -n <OPENSHIFT_PROJECT> delete oltrace ol-trace
 echo "Deleting OpenLiberty Dump"
 oc -n <OPENSHIFT_PROJECT> delete oldump ol-dump
 
-echo "Removing PVC reference from OpenLibertyApplication
+echo "Removing PVC reference from OpenLibertyApplication"
 oc patch openlibertyapplication appmod -p '{"spec":{"serviceability":{"volumeClaimName":null}}}' --type=merge
 
 echo "Deleting PVC"
 oc -n <OPENSHIFT_PROJECT> delete pvc ol-pvc-day2
 
-ech "Deleting PV"
+echo "Deleting PV"
 oc delete pv pv-ol-day2
